@@ -7,9 +7,12 @@
             <ul><a href="{{action('OwnerDistinctController@index')}}">所有者区分マスタ</a></ul>
             <ul><a href="{{action('TypeController@index')}}">状態マスタ</a></ul>
             <ul><a href="{{action('EmployeeController@index')}}">従業員マスタ</a></ul>
+            <ul><a href="{{action('DeviceController@create')}}">新規登録</a></ul>
+            <ul>編集・削除</ul>
+            <ul>マスタ編集</ul>
         </li>
     </header>
-    <table>
+    <table device> 
         <tr>
             <th>項番</th>
             <th>所有区分</th>
@@ -45,7 +48,7 @@
         </tr>
         @endforeach
     </table>
-    <a href="{{action('DeviceController@create')}}">新規作成</a>
+    <button></button>
 
     <div class ='modal_wrapper'></div>
 @endsection

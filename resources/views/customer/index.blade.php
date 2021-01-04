@@ -13,7 +13,7 @@
             <td>{{$customer-> name}}</td>
         </tr>
         @endforeach
-        {{ Form::open(['method'=>'post', 'route'=>['customers.store']])}}
+        {{ Form::open(['method'=>'post', 'route'=>['customer.store']])}}
         <tr>
             <td>連番</td>
             <td>{{ Form::text('name',null)}}</td>
