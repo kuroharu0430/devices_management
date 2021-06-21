@@ -10,9 +10,12 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
             html, body {
-                /* background-color: #fff;
+                background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -60,7 +63,7 @@
 
             .m-b-md {
                 margin-bottom: 30px;
-            } */
+            }
         </style>
     </head>
     <body>
@@ -97,5 +100,11 @@
                 </div>
             </div>
         </div>
+        <div class="content">
+        <div id="app">
+<example-component></example-component>
+ </div>
+         <?php phpinfo(); ?>
+         <script src="js/app.js"></script>
     </body>
 </html>

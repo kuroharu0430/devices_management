@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Device;
-use App\Owner;
 use App\OwnerDistinct;
 use App\Customer;
 use App\Employee;
@@ -22,6 +21,7 @@ class DeviceController extends Controller
     public function index()
     {
         $devices = Device::all();
+        $owner_distincts = OwnerDistinct::all();
         $statuses = Status::all()-> pluck('name', 'id' );
         $employees = Employee::all() -> pluck('name', 'id' );
         $types = Type::all()-> pluck('name', 'id' );
@@ -55,37 +55,30 @@ class DeviceController extends Controller
     public function store(Request $request)
     {
         $device = new Device();
-        $owner = new Owner();
-        $owner ->owner_distinct_id = $request->owner_distinct_id;
-        switch($owner->owner_distinct ->relation){
-            case 'customer':
-                $owner ->foreign_id = $request->owner_customer_id;
-                break;
-            case 'employee':
-                $owner ->foreign_id = $request->owner_employee_id;
-                break;
-            default:
-                $owner ->foreign_id = 0;
+        $device ->owner_distinct_id = $request->owner_distinct_id;
+        if($request ->owner_id){
+            $device ->owner_id = $request->owner_id;
         }
-        $owner->save();
-
-        $device ->owner_id = $owner ->id;
-        $device ->registration_year = $request->registration_year;
+        $device ->registrate_date= $request->registrate_date;
+        $device ->return_date= $request->return_date;
         $device ->type_id = $request->type_id;
-        $management_type_number = substr('00'.$device->type->number,-2);
-
-        // $latest_device_year = Device::where( 'billing_year', $billing->billing_year )->orderBy( 'billing_number_of_year', 'desc' )->first();
-        
+        $management_type_number = substr('00'.$device->type->number,-2);        
         // $device_number_of_year = 1;
         $device ->management_number = 'H'.''.$management_type_number;     
         $device ->device_name = $request ->device_name;
         $device ->status_id = $request ->status_id;
         $device ->employee_id = $request->employee_id;
         $device ->serial_number = $request ->serial_number;
-        $device ->location = $request ->location;
+        if($device->owner_distinct->has_own == 1){
+            $device->status_id = 1;
+        }else{
+            $device->status_id = 2;
+        }
+        $device ->location = 'insite';
+        $device ->remarks = $request ->remarks;
         $device ->save();
 
-        return redirect( 'devices' );
+        return redirect('device' );
     }
 
     /**
@@ -106,16 +99,16 @@ class DeviceController extends Controller
      * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function edit(Device $device)
+    public function edit($id)
     {
-        $owner = $device->owner;
+        $device = Device::find($id);
         $owner_distincts = OwnerDistinct::all();
         $customers = Customer::all() -> pluck('name', 'id' );
         $statuses = Status::all()-> pluck('name', 'id' );
         $employees = Employee::all() -> pluck('name', 'id' );
         $types = Type::all()-> pluck('name', 'id' );
         return view('device/edit',
-        ['device'=>$device, 'owner'=> $owner, 'owner_distincts' => $owner_distincts,'customers' => $customers,
+        ['device'=>$device, 'owner_distincts' => $owner_distincts,'customers' => $customers,
         'employees' => $employees, 'statuses' => $statuses,'types' => $types
         ]);
     }
@@ -130,21 +123,6 @@ class DeviceController extends Controller
     public function update(Request $request, Device $device)
     {
         $device = new Device();
-        $owner = new Owner();
-        $owner ->owner_distinct_id = $request->owner_distinct_id;
-        switch($owner->owner_distinct ->relation){
-            case 'customer':
-                $owner ->foreign_id = $request->owner_customer_id;
-                break;
-            case 'employee':
-                $owner ->foreign_id = $request->owner_employee_id;
-                break;
-            default:
-                $owner ->foreign_id = 0;
-        }
-        $owner->save();
-
-        $device ->owner_id = $owner ->id;
         $device ->registration_year = $request->registration_year;
         $device ->type_id = $request->type_id;
         $management_type_number = substr('00'.$device->type->number,-2);
@@ -157,7 +135,8 @@ class DeviceController extends Controller
         $device ->status_id = $request ->status_id;
         $device ->employee_id = $request->employee_id;
         $device ->serial_number = $request ->serial_number;
-        $device ->location = $request ->location;
+        $device ->location = 'insite';
+        $device ->remarks = $request ->remarks;
         $device ->save();
 
         return redirect( 'devices' );     

@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Partner;
+use App\bringed_device;
 use Faker\Generator as Faker;
 
-$factory->define(Partner::class, function (Faker $faker) {
+$factory->define(bringed_device::class, function (Faker $faker) {
     return [
         //
     ];

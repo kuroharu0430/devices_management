@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OwnerDistinct extends Model
 {
-    public function owners(){
-        return $this->hasMany(Owner::class)();
+    public function devices(){
+        return $this->hasMany(Device::class)();
     }
+
     use SoftDeletes;
     protected $dates = ['delete_at'];
 

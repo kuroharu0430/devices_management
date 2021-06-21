@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\OwnerDistinct;
+use App\owner_distinct;
 use Faker\Generator as Faker;
 
-$factory->define(OwnerDistinct::class, function (Faker $faker) {
+$factory->define(owner_distinct::class, function (Faker $faker) {
     return [
         //
     ];

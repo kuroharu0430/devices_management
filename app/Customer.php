@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
-    public function device(){
+    public function devices(){
         return $this->hasMany(Device::class)();
     }
     use SoftDeletes;

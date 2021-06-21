@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\owner;
+use App\bringed_device;
 use Illuminate\Http\Request;
 
-class OwnerController extends Controller
+class BringedDeviceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class OwnerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\owner  $owner
+     * @param  \App\bringed_device  $bringed_device
      * @return \Illuminate\Http\Response
      */
-    public function show(owner $owner)
+    public function show(bringed_device $bringed_device)
     {
         //
     }
@@ -52,10 +52,10 @@ class OwnerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\owner  $owner
+     * @param  \App\bringed_device  $bringed_device
      * @return \Illuminate\Http\Response
      */
-    public function edit(owner $owner)
+    public function edit(bringed_device $bringed_device)
     {
         //
     }
@@ -64,10 +64,10 @@ class OwnerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\owner  $owner
+     * @param  \App\bringed_device  $bringed_device
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, owner $owner)
+    public function update(Request $request, bringed_device $bringed_device)
     {
         //
     }
@@ -75,10 +75,10 @@ class OwnerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\owner  $owner
+     * @param  \App\bringed_device  $bringed_device
      * @return \Illuminate\Http\Response
      */
-    public function destroy(owner $owner)
+    public function destroy(bringed_device $bringed_device)
     {
         //
     }

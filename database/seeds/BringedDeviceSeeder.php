@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class RelationSeeder extends Seeder
+class BringedDeviceSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatusesTable extends Migration
+class CreateOwnerDistinctsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('owner_distincts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('symbol')->unique();
             $table->string('name')->unique();
+            $table->string('relation')->nullable();
+            $table->boolean('has_own');
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 
@@ -28,6 +32,6 @@ class CreateStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('owner_distincts');
     }
 }

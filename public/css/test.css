@@ -1,5 +1,4 @@
-
-.device_show{
+.modal_windows{
     display:inline-block;
     background-color:#ccc;
     padding:20px;
@@ -37,4 +36,8 @@ table,th,td{
     border:1px solid #333; */
     padding:0 0.5rem;
     /* text-align: center; */
+}
+
+.route_link{
+    color:red;
 }

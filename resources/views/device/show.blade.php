@@ -1,4 +1,4 @@
-<div class ='device_show'>
+<div class ='modal_windows'>
     <table >
         <tr>
             <td>項番</td>
